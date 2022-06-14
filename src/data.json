@@ -1,0 +1,73 @@
+{
+    "type": "FeatureCollection",
+    "features":[
+        {   
+            "type": "Feature",
+            "properties":{
+                "id": 0,
+                "name": "first rout"
+            },
+            "geometry":{
+                "type": "MultiPoint",
+                "coordinates":[
+                    [
+                        48.70278484584795,
+                        23.639165755789873
+                    ],
+                    [
+                        49.043201882160005,
+                        24.405021366006268
+                    ],
+                    [
+                        48.80580970689418,
+                        24.532236077126158
+                    ]
+
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties":{
+                "id": 1,
+                "name": "second rout"
+            },
+            "geometry":{
+                "type": "MultiPoint",
+                "coordinates":[
+                    [
+                        47.70278484584795,
+                        24.639165755789873
+                    ],
+                    [
+                        49.80580970689418,
+                        25.532236077126158
+                    ]
+
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties":{
+                "id": 2,
+                "name": "third rout"
+            },
+            "geometry":{
+                "type": "MultiPoint",
+                "coordinates":[
+                    [
+                        47.70278484584795,
+                        24.639165755789873
+                    ],
+                    [
+                        40.043201882160005,
+                        20.405021366006268
+                    ]
+
+                ]
+            }
+        }
+        
+    ]
+}

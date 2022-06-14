@@ -1,0 +1,49 @@
+import { MapContainer, TileLayer } from "react-leaflet";
+import "./styles.css";
+import "leaflet/dist/leaflet.css";
+import React, { Component } from "react";
+
+import CheckboxList from "./components/CheckboxList"
+import Map from "./components/MapComponent";
+import { fetchDataVehicles } from "./util/Dao";
+import { RequestToAPI } from "./RequestToAPI";
+
+export class App extends Component {
+  constructor(props) {
+    super(props)
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      checkedRouteList: [],
+    }
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        <Map checkedRouteList={this.state.checkedRouteList} />
+        <CheckboxList
+          checkedRouteList={this.state.checkedRouteList}
+          onCheckedListChange={this.handleChange}
+        />
+      </div>
+    )
+  }
+  handleChange(value) {
+    const currentIndex = this.state.checkedRouteList.indexOf(value);
+    const newChecked = [...this.state.checkedRouteList];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
+
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    newChecked.sort(function (a, b) {
+      return a - b;
+    });
+    this.setState({ checkedRouteList: newChecked });
+  };
+
+
+}
+export default App;
