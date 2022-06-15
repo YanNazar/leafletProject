@@ -19,7 +19,7 @@ export default class VehiclesMarkers extends Component {
         console.log("did mount");
     }
     tick() {
-        fetch(`https://city.dozor.tech/data?t=2&p=${this.props.checkedRoute*1728}`)
+        fetch(`https://city.dozor.tech/data?t=2&p=${this.props.checkedRoute}`)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -36,6 +36,7 @@ export default class VehiclesMarkers extends Component {
             )
     }
     render() {
+        
         const icon = L.icon({
             iconUrl: "vehicleMark.png",
             iconAnchor: [10, 28],

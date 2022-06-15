@@ -63,7 +63,7 @@ class Map extends Component {
           )
         })} */}
         {data.map(i => {
-          return (<VehiclesMarkers checkedRoute={i.properties.id} />)
+          return (<VehiclesMarkers checkedRoute={i.properties.routeNumber} />)
         })}
       </MapContainer>
 
