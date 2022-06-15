@@ -6,11 +6,11 @@ import GeojsonLayer from "./GeoJsonLayer";
 
 import VehiclesMarkers from "./VehiclesMarkers";
 
-const method = 'GET';
-const url = 'https://city.dozor.tech/data?t=1';
-const headers = {
-  cookie: 'JSESSIONID=6B2A8F84CD5B324CB5219EE44D5ED52D;',
-  host: 'city.dozor.tech'
+const requestOptions = {
+  method: 'GET',
+  headers : {
+    'Cookie': 'gts.web.uuid=25508073-D039-4AA8-934C-F21ECA9C1313; gts.web.city=zhytomyr; gts.web.google_map.center.lon=50.254023; gts.web.google_map.center.lat=28.662694; gts.web.google_map.zoom=13; JSESSIONID=1FDF28C96D6BDA7460173C20FBE9A04D'
+  }
 }
 
 class Map extends Component {
@@ -24,9 +24,8 @@ class Map extends Component {
   }
   componentDidMount() {
     console.log("did mount");
-    // fetch({ method, url, headers })
-    fetch({method, url, headers})
-      .then(res => res.json())
+    fetch('https://city.dozor.tech/data?t=2', requestOptions)
+      .then(res =>  res.json())
       .then(
         (result) => {
           this.setState({
@@ -70,8 +69,7 @@ class Map extends Component {
           return (<Route key={f.properties.id} waypoints={f.geometry.coordinates} />)
         })}
           {/* <GeojsonLayer url={url} headers = {headers} method ={method}/> */}
-          {coordinates.map( i =>{ 
-            return(<Marker key = { i.id } position={i.loc}/>)})}
+          <Marker key = { coordinates.id } position={coordinates.loc}/>)
         </MapContainer>
 
       )
