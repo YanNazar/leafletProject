@@ -51,8 +51,8 @@ class Map extends Component {
     const data = fetchDataById(this.props.checkedRouteList);
     // console.log(this.state.coordinates);
     if (error) {
-      return <div>Помилка: {error.message}</div>;
-    } else 
+      console.log(error.message);
+    }
     if (isLoaded) {
       console.log(coordinates)
       return (
