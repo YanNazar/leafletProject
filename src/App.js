@@ -1,12 +1,9 @@
-import { MapContainer, TileLayer } from "react-leaflet";
 import "./styles.css";
 import "leaflet/dist/leaflet.css";
 import React, { Component } from "react";
 
 import CheckboxList from "./components/CheckboxList"
 import Map from "./components/MapComponent";
-import { fetchDataVehicles } from "./util/Dao";
-import { RequestToAPI } from "./RequestToAPI";
 
 export class App extends Component {
   constructor(props) {
@@ -14,14 +11,38 @@ export class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       checkedRouteList: [],
+      routeList: [],
     }
   }
-  
+  componentDidMount() {
+    fetch('data.json')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            routeList: result.features
+          });
+          console.log(this.state.routeList);
+        },
+        (error) => {
+          this.setState({
+            error
+          });
+        }
+      )
+    console.log("loaded");
+    console.log(this.state.routeList);
+  }
   render() {
     return (
       <div className="App">
-        <Map checkedRouteList={this.state.checkedRouteList} />
+        <Map
+          routeList={this.state.routeList}
+          checkedRouteList={this.state.checkedRouteList}
+        />
         <CheckboxList
+          routeList={this.state.routeList}
           checkedRouteList={this.state.checkedRouteList}
           onCheckedListChange={this.handleChange}
         />

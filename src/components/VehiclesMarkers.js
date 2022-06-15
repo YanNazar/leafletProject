@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Component } from 'react';
-import { Marker, FeatureGroup, Popup } from 'react-leaflet';
+import React, { Component } from 'react';
+import { Marker, Popup } from 'react-leaflet';
 
 export default class VehiclesMarkers extends Component {
     constructor(props) {
@@ -14,13 +14,14 @@ export default class VehiclesMarkers extends Component {
     componentDidMount() {
         this.timerID = setInterval(
             () => this.tick(),
-            5000
+            10000
         );
         console.log("did mount");
     }
     tick() {
         fetch(`https://city.dozor.tech/data?t=2&p=${this.props.checkedRoute}`)
-            .then(res => res.json())
+            .then(res => res.json
+            )
             .then(
                 (result) => {
                     this.setState({
@@ -36,7 +37,7 @@ export default class VehiclesMarkers extends Component {
             )
     }
     render() {
-        
+        console.log(this.state.carNumbers);
         const icon = L.icon({
             iconUrl: "vehicleMark.png",
             iconAnchor: [10, 28],
@@ -49,7 +50,7 @@ export default class VehiclesMarkers extends Component {
             isLoaded && coordinates.map(i => {
                 return (
                     <Marker key={i.id} position={i.loc} icon={icon}>
-                        <Popup><div>{i.gNb}</div></Popup>
+                        <Popup key={i.id}><div>{i.gNb}</div></Popup>
                     </Marker>
                 )
             })

@@ -5,7 +5,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import fetchData from "../util/Dao";
 
 export default class CheckboxList extends React.Component {
   constructor(props) {
@@ -18,7 +17,7 @@ export default class CheckboxList extends React.Component {
   }
   render() {
     
-    const data = fetchData();
+    const data = this.props.routeList;
     const checkedRouteList = this.props.checkedRouteList;
 
     return (
