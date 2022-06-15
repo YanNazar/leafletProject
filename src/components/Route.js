@@ -3,14 +3,13 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine";
 import { createControlComponent } from "@react-leaflet/core";
 
-L.Marker.prototype.options.icon = L.icon({
-  iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
-  // iconUrl: "vehicleMark.png",
-  iconAnchor: [10, 28],
-  iconSize: [20,30]
-});
-
 const createRoutineMachineLayer = (props) => {
+  L.Marker.prototype.options.icon = L.icon({
+    iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
+    // iconUrl: "vehicleMark.png",
+    iconAnchor: [10, 28],
+    iconSize: [20,30]
+  });
 
   console.log(props);
   const routingControl = L.Routing.control({
