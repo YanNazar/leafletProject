@@ -25,13 +25,13 @@ class Map extends Component {
   componentDidMount() {
     console.log("did mount");
     // fetch({ method, url, headers })
-    fetch("www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita")
+    fetch({method, url, headers})
       .then(res => res.json())
       .then(
         (result) => {
           this.setState({
             isLoaded: true,
-            coordinates: result
+            coordinates: result.data[0].dvs[0]
           });
           console.log(this.coordinates);
         },
@@ -48,11 +48,12 @@ class Map extends Component {
 
   render() {
     const { error, isLoaded, coordinates } = this.state;
-    // const data = this.state.coordinates;
+    const data = fetchDataById(this.props.checkedRouteList);
     // console.log(this.state.coordinates);
     if (error) {
       return <div>Помилка: {error.message}</div>;
-    } else if (isLoaded) {
+    } else 
+    if (isLoaded) {
       console.log(coordinates)
       return (
         <MapContainer
@@ -65,11 +66,12 @@ class Map extends Component {
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {/* {this.state.isLoaded && data.map(f => {
+          {data.map(f => {
           return (<Route key={f.properties.id} waypoints={f.geometry.coordinates} />)
-        })} */}
+        })}
           {/* <GeojsonLayer url={url} headers = {headers} method ={method}/> */}
-          <Marker position={[coordinates.lat, coordinates.lng]} />
+          {coordinates.map( i =>{ 
+            return(<Marker key = { i.id } position={i.loc}/>)})}
         </MapContainer>
 
       )
